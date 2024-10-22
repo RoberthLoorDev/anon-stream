@@ -1,0 +1,43 @@
+.inputcontainer {
+     position: relative;
+     border-radius: 10px;
+     background-color: #1f2430;
+     height: 44px;
+}
+
+.inputform {
+     background-color: transparent;
+     width: 100%;
+     height: 100%;
+     border-radius: 10px;
+     box-shadow: none;
+     outline: none;
+     border: none;
+     text-indent: 10px;
+     font-size: 16px;
+     color: #f4f8f9;
+     font-weight: 500;
+}
+
+.iconinput {
+     position: absolute;
+     top: 15%;
+     right: 0;
+     transform: translate(-50%);
+     width: 25px;
+}
+
+.inputerror {
+     outline: 1px solid #b80712;
+}
+
+.alertmessage {
+     display: block;
+     color: #b80712;
+     font-size: 12px;
+     font-style: italic;
+}
+
+.hidealertmessage {
+     display: none;
+}

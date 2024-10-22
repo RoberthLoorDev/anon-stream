@@ -1,0 +1,82 @@
+.signincontainer {
+     display: flex;
+     flex-direction: column;
+     height: 100dvh;
+     justify-content: center;
+     align-items: center;
+     background-color: #0c0f13;
+     padding: 0 40px;
+}
+
+.h1login {
+     text-align: center;
+}
+
+.form {
+     display: flex;
+     flex-direction: column;
+}
+
+.plogin {
+     color: #a9acb3;
+     text-align: center;
+     font-size: 16px;
+     font-weight: 400;
+     line-height: 21px;
+     margin-top: 28px;
+}
+
+.inputscontainer {
+     margin-top: 50px;
+     display: flex;
+     flex-direction: column;
+     gap: 25px;
+}
+
+.textRegisterHere {
+     color: white;
+     margin-top: 35px;
+     font-size: 12px;
+}
+
+.textRegisterHere:hover {
+     cursor: pointer;
+}
+
+.containerTextSignInUsing {
+     position: relative;
+     display: flex;
+     flex-wrap: nowrap;
+     width: 100%;
+     align-items: center;
+     justify-content: center;
+}
+
+.textSignInUsing {
+     color: white;
+     font-size: 16px;
+     text-align: center;
+     margin-top: 39px;
+     width: 100%;
+     z-index: 1;
+     padding: 0 20px;
+}
+
+.textSignInUsing::after {
+     content: "";
+     position: absolute;
+     display: inline-block;
+     height: 2px;
+     background: #1f2430;
+     margin-bottom: 5px;
+     width: 100%;
+     top: 50px;
+     left: 0;
+     z-index: -1;
+}
+
+.buttonsContainer {
+     display: flex;
+     margin-top: 20px;
+     gap: 10px;
+}
