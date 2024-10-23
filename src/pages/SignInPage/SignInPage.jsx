@@ -1,12 +1,11 @@
 import { useState } from "react";
 import InputFormComponent from "../../components/InputFormComponent/InputFormComponent";
 
-import styles from "./SignIn.module.css";
 import { icons } from "../../assets/icons/icons";
 import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
+import styles from "./SignIn.module.css";
 
-import { handleSignIn } from "../../supabase/auth";
-
+import { handleSignIn, signUpGoogle } from "../../supabase/auth";
 import { useNavigate } from "react-router-dom";
 
 export default function SignInPage() {
@@ -59,6 +58,8 @@ export default function SignInPage() {
                               icon={icons.lockIIcon}
                               type="password"
                          />
+
+                         <ButtonComponent text="Registrarse" variant="primary" type="submit" />
                     </div>
 
                     <a href="/signup" className={styles.textRegisterHere}>
@@ -72,34 +73,36 @@ export default function SignInPage() {
                               <span style={{ backgroundColor: "#0C0F13", padding: "0 17px" }}>O inicia sesión usando</span>
                          </div>
                     </div>
-
-                    {/* buttons  options login */}
-                    <div className={styles.buttonsContainer}>
-                         <ButtonComponent
-                              icon={icons.google}
-                              text="Google"
-                              width="111px"
-                              height="45px"
-                              alt="Iniciar sesión con Google"
-                         />
-
-                         <ButtonComponent
-                              icon={icons.twitch}
-                              text="Twitch"
-                              width="111px"
-                              height="45px"
-                              alt="Iniciar sesión con Twitch"
-                         />
-
-                         <ButtonComponent
-                              icon={icons.discord}
-                              text="Discord"
-                              width="111px"
-                              height="45px"
-                              alt="Iniciar sesión con Discord"
-                         />
-                    </div>
                </form>
+
+               {/* buttons  options login */}
+               <div className={styles.buttonsContainer}>
+                    <ButtonComponent
+                         icon={icons.google}
+                         text="Google"
+                         width="111px"
+                         height="45px"
+                         alt="Iniciar sesión con Google"
+                         onClick={signUpGoogle}
+                         type="button"
+                    />
+
+                    <ButtonComponent
+                         icon={icons.twitch}
+                         text="Twitch"
+                         width="111px"
+                         height="45px"
+                         alt="Iniciar sesión con Twitch"
+                    />
+
+                    <ButtonComponent
+                         icon={icons.discord}
+                         text="Discord"
+                         width="111px"
+                         height="45px"
+                         alt="Iniciar sesión con Discord"
+                    />
+               </div>
           </div>
      );
 }

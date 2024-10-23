@@ -87,6 +87,7 @@ export default function SignUpPage() {
                               height="45px"
                               alt="Iniciar sesión con Google"
                               onClick={signUpGoogle}
+                              type="button"
                          />
 
                          <ButtonComponent

@@ -11,7 +11,7 @@ export default function ButtonComponent({ text, icon, width, height, alt, type, 
      return (
           <button
                type={type}
-               onClick={() => onClick}
+               onClick={onClick}
                className={stylesButton.button}
                style={{
                     ...variantButton[variant],
