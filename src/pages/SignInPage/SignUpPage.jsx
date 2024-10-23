@@ -4,7 +4,7 @@ import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
 import InputFormComponent from "../../components/InputFormComponent/InputFormComponent";
 import styles from "./SignIn.module.css";
 
-import { handleSignUp } from "../../supabase/auth";
+import { handleSignUp, signUpGoogle } from "../../supabase/auth";
 import { useNavigate } from "react-router-dom";
 
 export default function SignUpPage() {
@@ -20,7 +20,7 @@ export default function SignUpPage() {
           try {
                event.preventDefault();
                await handleSignUp(formData.email, formData.password);
-               navigate("/dashboard");
+               navigate("/home");
           } catch (error) {
                console.error(error);
           }
@@ -86,6 +86,7 @@ export default function SignUpPage() {
                               width="111px"
                               height="45px"
                               alt="Iniciar sesión con Google"
+                              onClick={signUpGoogle}
                          />
 
                          <ButtonComponent
