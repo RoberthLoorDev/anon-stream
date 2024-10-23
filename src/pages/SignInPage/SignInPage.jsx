@@ -5,14 +5,27 @@ import styles from "./SignIn.module.css";
 import { icons } from "../../assets/icons/icons";
 import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
 
+import { handleSignIn } from "../../supabase/auth";
+
+import { useNavigate } from "react-router-dom";
+
 export default function SignInPage() {
+     const navigate = useNavigate();
+
      const [formData, setFormData] = useState({
           email: "",
           password: "",
      });
 
-     const onSubmitForm = (event) => {
+     const onSubmitForm = async (event) => {
           event.preventDefault();
+
+          try {
+               await handleSignIn(formData.email, formData.password);
+               navigate("/home");
+          } catch (error) {
+               console.error(error);
+          }
      };
 
      const handleChange = (e) => {
