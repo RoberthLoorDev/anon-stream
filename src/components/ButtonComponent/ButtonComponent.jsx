@@ -7,10 +7,11 @@ const variantButton = {
      delete: { backgroundColor: "#8F1218", color: "#A9ACB3" },
 };
 
-export default function ButtonComponent({ text, icon, width, height, alt, type, variant = "secondary" }) {
+export default function ButtonComponent({ text, icon, width, height, alt, type, variant = "secondary", onClick }) {
      return (
           <button
                type={type}
+               onClick={() => onClick}
                className={stylesButton.button}
                style={{
                     ...variantButton[variant],
@@ -33,4 +34,5 @@ ButtonComponent.propTypes = {
      alt: PropTypes.string,
      type: PropTypes.string,
      variant: PropTypes.oneOf(["primary", "secondary", "detele"]),
+     onClick: PropTypes.func,
 };
