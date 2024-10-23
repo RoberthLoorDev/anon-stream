@@ -59,7 +59,7 @@ export default function SignInPage() {
                               type="password"
                          />
 
-                         <ButtonComponent text="Registrarse" variant="primary" type="submit" />
+                         <ButtonComponent text="Iniciar sesión" variant="primary" type="submit" />
                     </div>
 
                     <a href="/signup" className={styles.textRegisterHere}>
