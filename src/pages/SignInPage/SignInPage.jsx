@@ -15,16 +15,21 @@ export default function SignInPage() {
           email: "",
           password: "",
      });
+     const [formError, setFormError] = useState(null);
 
      const onSubmitForm = async (event) => {
           event.preventDefault();
 
-          try {
-               await handleSignIn(formData.email, formData.password);
-               navigate("/home");
-          } catch (error) {
-               console.error(error);
+          const response = await handleSignIn(formData.email, formData.password);
+          const errorMessage = response.message;
+          const responseSucess = response.sucess;
+
+          if (errorMessage) {
+               setFormError(errorMessage);
+               return;
           }
+
+          if (responseSucess) navigate("/home");
      };
 
      const handleChange = (e) => {
@@ -32,6 +37,8 @@ export default function SignInPage() {
                ...formData,
                [e.target.name]: e.target.value,
           });
+
+          setFormError(null);
      };
 
      return (
@@ -39,6 +46,9 @@ export default function SignInPage() {
                <form onSubmit={onSubmitForm} className={styles.form}>
                     <h1 className={styles.h1login}>Inicio de sesión </h1>
                     <p className={styles.plogin}>Inicia sesión para administrar los secretos de tu comunidad 🤫</p>
+
+                    {/* form error */}
+                    {formError && <span className={styles.errorForm}>{formError}</span>}
 
                     {/* inputs */}
                     <div className={styles.inputscontainer}>

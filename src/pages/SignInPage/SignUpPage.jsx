@@ -52,8 +52,8 @@ export default function SignUpPage() {
      return (
           <div className={styles.signincontainer}>
                <form onSubmit={onSubmitForm} className={styles.form}>
-                    <h1 className={styles.h1login}>Inicio de sesión </h1>
-                    <p className={styles.plogin}>Inicia sesión para administrar los secretos de tu comunidad 🤫</p>
+                    <h1 className={styles.h1login}>Registrarse </h1>
+                    <p className={styles.plogin}>Regístrate para administrar los secretos de tu comunidad 🤫</p>
 
                     {/* form error */}
                     {formError && <span className={styles.errorForm}>{formError}</span>}

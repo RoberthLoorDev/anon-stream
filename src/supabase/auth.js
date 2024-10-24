@@ -7,7 +7,9 @@ export const handleSignUp = async (email, password) => {
                password,
           });
 
-          if (error) throw new Error(error.message);
+          if (error) {
+               throw new Error(error.message);
+          }
           return data;
      } catch (error) {
           console.error(error);
@@ -22,11 +24,22 @@ export const handleSignIn = async (email, password) => {
                password,
           });
 
-          if (error) throw new Error(error.message);
+          if (error) {
+               if (error.code === "invalid_credentials") {
+                    return { sucess: false, message: "El correo o la contraseña son incorrcetos" };
+               }
 
-          return data;
+               //other error
+               throw new Error(error.message);
+          }
+
+          return { sucess: true, data: data };
      } catch (error) {
-          console.error(error);
+          console.error(`Error de autenticación: ${error.message}`);
+          return {
+               sucess: false,
+               message: error.message,
+          };
      }
 };
 
