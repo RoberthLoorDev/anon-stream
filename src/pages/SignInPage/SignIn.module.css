@@ -27,10 +27,10 @@
 }
 
 .inputscontainer {
-     margin-top: 50px;
      display: flex;
      flex-direction: column;
      gap: 25px;
+     margin-top: 20px;
 }
 
 .textRegisterHere {
@@ -79,4 +79,14 @@
      display: flex;
      margin-top: 20px;
      gap: 10px;
+}
+
+.errorForm {
+     color: #a20912;
+     margin-top: 20px;
+     font-weight: 400;
+     line-height: 23px;
+     padding: 15px;
+     background-color: #a209131f;
+     border-radius: 10px;
 }
