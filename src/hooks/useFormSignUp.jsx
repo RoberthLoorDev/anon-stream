@@ -28,7 +28,12 @@ export default function useFormSignUp() {
           }
 
           try {
-               await handleSignUp(formData.email, formData.password);
+               const response = await handleSignUp(formData.email, formData.password);
+               if (response.code) {
+                    setFormError("El usuario ya existe, inicie sesión");
+                    return;
+               }
+
                navigate("/home");
           } catch (error) {
                console.error(error);

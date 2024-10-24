@@ -8,6 +8,14 @@ export const handleSignUp = async (email, password) => {
           });
 
           if (error) {
+               if (error.code === "user_already_exists") {
+                    return {
+                         sucess: false,
+                         message: "Usuario ya registraado, inicie sesión",
+                         code: error.code,
+                    };
+               }
+
                throw new Error(error.message);
           }
           return data;
