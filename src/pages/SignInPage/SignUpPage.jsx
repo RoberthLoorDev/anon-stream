@@ -16,13 +16,19 @@ export default function SignUpPage() {
           repeatPassword: "",
      });
 
-     const [noMatchingPassword, setNoMatchingPassword] = useState(null);
+     const [formError, setFormError] = useState(null);
 
      const onSubmitForm = async (event) => {
           event.preventDefault();
           const matchingPassworsd = formData.password == formData.repeatPassword;
+
           if (!matchingPassworsd) {
-               setNoMatchingPassword("Las contarseñas deben ser iguales 🤨");
+               setFormError("Las contarseñas deben ser iguales 🤨");
+               return;
+          }
+
+          if (formData.password.length < 8) {
+               setFormError("La contraseña debe tener al menos 8 dígitos");
                return;
           }
 
@@ -40,7 +46,7 @@ export default function SignUpPage() {
                [e.target.name]: e.target.value,
           });
 
-          setNoMatchingPassword(null);
+          setFormError(null);
      };
 
      return (
@@ -49,9 +55,8 @@ export default function SignUpPage() {
                     <h1 className={styles.h1login}>Inicio de sesión </h1>
                     <p className={styles.plogin}>Inicia sesión para administrar los secretos de tu comunidad 🤫</p>
 
-                    {noMatchingPassword && (
-                         <span className={styles.noMatchingPasswordText}>Las contarseñas deben ser iguales 🤨</span>
-                    )}
+                    {/* form error */}
+                    {formError && <span className={styles.errorForm}>{formError}</span>}
 
                     {/* inputs */}
                     <div className={styles.inputscontainer}>

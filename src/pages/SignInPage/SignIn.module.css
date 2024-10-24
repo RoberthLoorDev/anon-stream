@@ -81,8 +81,12 @@
      gap: 10px;
 }
 
-.noMatchingPasswordText {
+.errorForm {
      color: #a20912;
      margin-top: 20px;
      font-weight: 400;
+     line-height: 23px;
+     padding: 15px;
+     background-color: #a209131f;
+     border-radius: 10px;
 }
