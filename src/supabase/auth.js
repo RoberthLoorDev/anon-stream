@@ -7,13 +7,15 @@ export const handleSignUp = async (email, password) => {
                password,
           });
 
+          console.log(data);
+
           if (error) {
-               console.log("Error al registrar el usuario", error);
-               return error.message;
+               throw Error(error);
           }
 
           console.log("Usuario registrador", data);
      } catch (error) {
+          console.log("Aqui se ejecuta el error");
           console.error(error);
      }
 };
