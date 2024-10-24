@@ -7,19 +7,14 @@ export const handleSignUp = async (email, password) => {
                password,
           });
 
-          console.log(data);
-
-          if (error) {
-               throw Error(error);
-          }
-
-          console.log("Usuario registrador", data);
+          if (error) throw new Error(error.message);
+          return data;
      } catch (error) {
-          console.log("Aqui se ejecuta el error");
           console.error(error);
      }
 };
 
+//sign in using email and password
 export const handleSignIn = async (email, password) => {
      try {
           const { data, error } = await supabase.auth.signInWithPassword({
@@ -27,12 +22,9 @@ export const handleSignIn = async (email, password) => {
                password,
           });
 
-          if (error) {
-               console.error(error.message);
-               throw new Error("Error al iniciar sesion", error.message);
-          }
+          if (error) throw new Error(error.message);
 
-          console.log("Inicio se sesion exitoso", data);
+          return data;
      } catch (error) {
           console.error(error);
      }
@@ -48,12 +40,9 @@ export const signUpGoogle = async () => {
                },
           });
 
-          if (error) {
-               console.log("Error al registrarse con Google", error);
-               return error.message;
-          }
+          if (error) throw new Error("Error al registrarse con Google", error);
 
-          console.log("Usuario registrado", data);
+          return data;
      } catch (error) {
           console.error(error);
      }
