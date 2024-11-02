@@ -10,7 +10,7 @@ export const handleSignUp = async (email, password) => {
           if (error) {
                if (error.code === "user_already_exists") {
                     return {
-                         sucess: false,
+                         success: false,
                          message: "Usuario ya registraado, inicie sesión",
                          code: error.code,
                     };
@@ -18,9 +18,18 @@ export const handleSignUp = async (email, password) => {
 
                throw new Error(error.message);
           }
-          return data;
+
+          return {
+               success: true,
+               data,
+               message: "Registro de usuario exitoso",
+          };
      } catch (error) {
-          console.error(error);
+          console.error(`Error al registrar el usuario: ${error}`);
+          return {
+               success: false,
+               message: "Error en el registro, intentalo de nuevo",
+          };
      }
 };
 
@@ -34,19 +43,19 @@ export const handleSignIn = async (email, password) => {
 
           if (error) {
                if (error.code === "invalid_credentials") {
-                    return { sucess: false, message: "El correo o la contraseña son incorrcetos" };
+                    return { success: false, message: "El correo o la contraseña son incorrectos" };
                }
 
                //other error
                throw new Error(error.message);
           }
 
-          return { sucess: true, data: data };
+          return { success: true, data: data, message: "Inicio se sesión exitoso" };
      } catch (error) {
-          console.error(`Error de autenticación: ${error.message}`);
+          console.error(`Error de inicio de sesión: ${error}`);
           return {
-               sucess: false,
-               message: error.message,
+               success: false,
+               message: error,
           };
      }
 };
@@ -63,8 +72,16 @@ export const signUpGoogle = async () => {
 
           if (error) throw new Error("Error al registrarse con Google", error);
 
-          return data;
+          return {
+               success: true,
+               data,
+               message: "Inicio de sesión con Google exitoso",
+          };
      } catch (error) {
-          console.error(error);
+          console.error(`Error en el inicio de sesión con Google: ${error}`);
+          return {
+               success: false,
+               message: "Error al iniciar sesión con Google. Por favor, intente nuevamente.",
+          };
      }
 };
