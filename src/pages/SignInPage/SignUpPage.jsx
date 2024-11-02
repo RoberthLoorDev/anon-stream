@@ -1,59 +1,18 @@
-import { useState } from "react";
 import { icons } from "../../assets/icons/icons";
 import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
 import InputFormComponent from "../../components/InputFormComponent/InputFormComponent";
 import styles from "./SignIn.module.css";
-
-import { handleSignUp, signUpGoogle } from "../../supabase/auth";
-import { useNavigate } from "react-router-dom";
+import SocialButtonsLogin from "../../components/SocialButtonsLogin";
+import useFormSignUp from "../../hooks/useFormSignUp";
 
 export default function SignUpPage() {
-     const navigate = useNavigate();
-
-     const [formData, setFormData] = useState({
-          email: "",
-          password: "",
-          repeatPassword: "",
-     });
-
-     const [formError, setFormError] = useState(null);
-
-     const onSubmitForm = async (event) => {
-          event.preventDefault();
-          const matchingPassworsd = formData.password == formData.repeatPassword;
-
-          if (!matchingPassworsd) {
-               setFormError("Las contarseñas deben ser iguales 🤨");
-               return;
-          }
-
-          if (formData.password.length < 8) {
-               setFormError("La contraseña debe tener al menos 8 dígitos");
-               return;
-          }
-
-          try {
-               await handleSignUp(formData.email, formData.password);
-               navigate("/home");
-          } catch (error) {
-               console.error(error);
-          }
-     };
-
-     const handleChange = (e) => {
-          setFormData({
-               ...formData,
-               [e.target.name]: e.target.value,
-          });
-
-          setFormError(null);
-     };
+     const { formError, handleChange, onSubmitForm, formData } = useFormSignUp();
 
      return (
           <div className={styles.signincontainer}>
                <form onSubmit={onSubmitForm} className={styles.form}>
-                    <h1 className={styles.h1login}>Inicio de sesión </h1>
-                    <p className={styles.plogin}>Inicia sesión para administrar los secretos de tu comunidad 🤫</p>
+                    <h1 className={styles.h1login}>Registrarse </h1>
+                    <p className={styles.plogin}>Regístrate para administrar los secretos de tu comunidad 🤫</p>
 
                     {/* form error */}
                     {formError && <span className={styles.errorForm}>{formError}</span>}
@@ -101,34 +60,7 @@ export default function SignUpPage() {
                     </div>
                </form>
 
-               {/* buttons  options login */}
-               <div className={styles.buttonsContainer}>
-                    <ButtonComponent
-                         icon={icons.google}
-                         text="Google"
-                         width="111px"
-                         height="45px"
-                         alt="Iniciar sesión con Google"
-                         onClick={signUpGoogle}
-                         type="button"
-                    />
-
-                    <ButtonComponent
-                         icon={icons.twitch}
-                         text="Twitch"
-                         width="111px"
-                         height="45px"
-                         alt="Iniciar sesión con Twitch"
-                    />
-
-                    <ButtonComponent
-                         icon={icons.discord}
-                         text="Discord"
-                         width="111px"
-                         height="45px"
-                         alt="Iniciar sesión con Discord"
-                    />
-               </div>
+               <SocialButtonsLogin />
           </div>
      );
 }

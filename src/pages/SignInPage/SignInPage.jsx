@@ -1,44 +1,21 @@
-import { useState } from "react";
-import InputFormComponent from "../../components/InputFormComponent/InputFormComponent";
-
 import { icons } from "../../assets/icons/icons";
 import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
+import InputFormComponent from "../../components/InputFormComponent/InputFormComponent";
+import SocialButtonsLogin from "../../components/SocialButtonsLogin";
+import useFormSignIn from "../../hooks/useFormSignIn";
 import styles from "./SignIn.module.css";
 
-import { handleSignIn, signUpGoogle } from "../../supabase/auth";
-import { useNavigate } from "react-router-dom";
-
 export default function SignInPage() {
-     const navigate = useNavigate();
-
-     const [formData, setFormData] = useState({
-          email: "",
-          password: "",
-     });
-
-     const onSubmitForm = async (event) => {
-          event.preventDefault();
-
-          try {
-               await handleSignIn(formData.email, formData.password);
-               navigate("/home");
-          } catch (error) {
-               console.error(error);
-          }
-     };
-
-     const handleChange = (e) => {
-          setFormData({
-               ...formData,
-               [e.target.name]: e.target.value,
-          });
-     };
+     const { formData, formError, handleChange, onSubmitForm } = useFormSignIn();
 
      return (
           <div className={styles.signincontainer}>
                <form onSubmit={onSubmitForm} className={styles.form}>
                     <h1 className={styles.h1login}>Inicio de sesión </h1>
                     <p className={styles.plogin}>Inicia sesión para administrar los secretos de tu comunidad 🤫</p>
+
+                    {/* form error */}
+                    {formError && <span className={styles.errorForm}>{formError}</span>}
 
                     {/* inputs */}
                     <div className={styles.inputscontainer}>
@@ -75,34 +52,7 @@ export default function SignInPage() {
                     </div>
                </form>
 
-               {/* buttons  options login */}
-               <div className={styles.buttonsContainer}>
-                    <ButtonComponent
-                         icon={icons.google}
-                         text="Google"
-                         width="111px"
-                         height="45px"
-                         alt="Iniciar sesión con Google"
-                         onClick={signUpGoogle}
-                         type="button"
-                    />
-
-                    <ButtonComponent
-                         icon={icons.twitch}
-                         text="Twitch"
-                         width="111px"
-                         height="45px"
-                         alt="Iniciar sesión con Twitch"
-                    />
-
-                    <ButtonComponent
-                         icon={icons.discord}
-                         text="Discord"
-                         width="111px"
-                         height="45px"
-                         alt="Iniciar sesión con Discord"
-                    />
-               </div>
+               <SocialButtonsLogin />
           </div>
      );
 }
