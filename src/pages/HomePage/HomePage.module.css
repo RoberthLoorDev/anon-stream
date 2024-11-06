@@ -51,6 +51,13 @@
 .iconLogout {
      width: auto;
      height: 22px;
+     padding: 10px;
+
+     &:hover {
+          cursor: pointer;
+          background-color: #212634;
+          border-radius: 10px;
+     }
 }
 
 .bodyHome {

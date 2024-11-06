@@ -2,8 +2,11 @@ import { icons } from "../../assets/icons/icons";
 import CardSecretComponent from "../../components/CardSecretComponent/CardSecretComponent";
 import Layout from "../../layout/Layout";
 import stylesHome from "./HomePage.module.css";
+import { useAuth } from "../../context/useAuth";
 
 export default function HomePage() {
+     const { signout } = useAuth();
+
      return (
           <Layout>
                <div className={stylesHome.containerHome}>
@@ -17,7 +20,7 @@ export default function HomePage() {
                                    <span className={stylesHome.nameStreamer}>D0oppa</span>
                                    <span className={stylesHome.descriptionStreamer}>Streamer de éxito</span>
                               </div>
-                              <img className={stylesHome.iconLogout} src={icons.logout} alt="Cerrar sesión" />
+                              <img className={stylesHome.iconLogout} src={icons.logout} onClick={signout} alt="Cerrar sesión" />
                          </div>
                     </div>
 
