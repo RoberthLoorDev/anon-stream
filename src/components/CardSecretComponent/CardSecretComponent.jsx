@@ -18,6 +18,7 @@ export default function CardSecretComponent() {
                     <span className={style.secretsNumber}>30</span>
                     <span className={style.secretText}>Secretos</span>
                </div>
+
                {/* secrets container */}
                <div className={style.secretDataContainer}>
                     <div className={style.secretData}>
@@ -29,21 +30,15 @@ export default function CardSecretComponent() {
                          <img src={icons.dateTitle} alt="Título del secreto" className={style.iconSecretDate} />
                          <span className={style.secretDate}>10 de noviembre del 2024</span>
                     </div>
-
-                    <div className={style.buttonsContainer}>
-                         <ButtonComponent
-                              text="Presentar"
-                              variant="tertiary"
-                              width="123px"
-                              height="40px"
-                              icon={icons.playWhite}
-                         />
-                         <span className={style.options} onClick={handleModal}>
-                              ⋮
-                         </span>
-                    </div>
-                    {openedModal && <SelectSecretModal />}
                </div>
+
+               <div className={style.buttonsContainer}>
+                    <ButtonComponent text="Presentar" variant="tertiary" width="123px" height="40px" icon={icons.playWhite} />
+                    <span className={style.options} onClick={handleModal}>
+                         ⋮
+                    </span>
+               </div>
+               {openedModal && <SelectSecretModal />}
           </article>
      );
 }

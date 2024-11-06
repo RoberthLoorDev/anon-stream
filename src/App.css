@@ -25,6 +25,7 @@ h1 {
 .layout {
      display: flex;
      flex-direction: column;
+     align-items: center;
      background-color: #121820;
      min-height: 100vh;
      padding: 0 25px;
@@ -33,6 +34,9 @@ h1 {
 .main {
      display: flex;
      flex-direction: column;
+     align-items: center;
+     width: 100%;
+     max-width: 780px;
 }
 
 /* disable show password icon in text inputs */
