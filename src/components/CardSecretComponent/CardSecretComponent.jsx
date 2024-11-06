@@ -8,7 +8,6 @@ export default function CardSecretComponent() {
      const [openedModal, setOpenedModal] = useState(false);
 
      const handleModal = () => {
-          console.log("se ejecuta");
           setOpenedModal(!openedModal);
      };
 

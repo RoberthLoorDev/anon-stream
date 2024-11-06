@@ -9,7 +9,6 @@ import { getRandomTitleUser } from "../../utils/titleUserRandom";
 export default function HomePage() {
      const { signout, user } = useAuth();
      const userTitle = getRandomTitleUser();
-     console.log(userTitle);
 
      const profileImage = user.user_metadata.avatar_url;
      const username = user.user_metadata.name || user.user_metadata.full_name;

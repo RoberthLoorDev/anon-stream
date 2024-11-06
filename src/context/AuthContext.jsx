@@ -22,8 +22,6 @@ export const AuthProvider = ({ children }) => {
 
                     setUser(session?.user ?? null);
                     setLoading(false);
-
-                    console.log(user);
                } catch (error) {
                     console.error(`Error al obtener la sesión del usuario: ${error}`);
                     setUser(null);
@@ -36,8 +34,6 @@ export const AuthProvider = ({ children }) => {
           const {
                data: { subscription },
           } = supabase.auth.onAuthStateChange(async (event, session) => {
-               console.log(`Evento de autenticación: ${event}`);
-
                if (event === "SIGNED_IN") {
                     setUser(session.user);
                     navigate("/home");
@@ -49,7 +45,6 @@ export const AuthProvider = ({ children }) => {
                }
 
                if (event === "TOKEN_REFRESHED") {
-                    console.log("Token actualizado automaticamente");
                     setUser(session.user);
                }
           });
