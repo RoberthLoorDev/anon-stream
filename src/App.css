@@ -25,9 +25,9 @@ h1 {
 .layout {
      display: flex;
      flex-direction: column;
-     background-color: #1f2430;
+     background-color: #121820;
      min-height: 100vh;
-     padding: 0 40px;
+     padding: 0 25px;
 }
 
 .main {
