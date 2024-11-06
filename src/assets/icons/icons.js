@@ -11,6 +11,7 @@ import playWhite from "./playWhite.png";
 import editWhite from "./editWhite.png";
 import deleteRed from "./delete.png";
 import plus from "./plus.png";
+import defaulUser from "./userdefault.webp";
 
 export const icons = {
      emailIcon: email,
@@ -26,4 +27,5 @@ export const icons = {
      editWhite,
      deleteRed,
      plus,
+     defaulUser,
 };

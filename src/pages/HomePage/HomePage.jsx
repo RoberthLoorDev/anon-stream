@@ -22,7 +22,11 @@ export default function HomePage() {
 
                          {/* User account */}
                          <div className={stylesHome.userContainer}>
-                              <img src={profileImage} className={stylesHome.iconStreamer} alt="Usuario" />
+                              <img
+                                   src={profileImage ? profileImage : icons.defaulUser}
+                                   className={stylesHome.iconStreamer}
+                                   alt="Usuario"
+                              />
                               <div className={stylesHome.nameDescriptionContainer}>
                                    <span className={stylesHome.nameStreamer}>{username}</span>
                                    <span className={stylesHome.descriptionStreamer}>{userTitle}</span>
