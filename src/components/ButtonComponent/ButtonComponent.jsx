@@ -4,6 +4,7 @@ import stylesButton from "./ButtonComponent.module.css";
 const variantButton = {
      primary: { backgroundColor: "#597BDA", color: "#121820" },
      secondary: { backgroundColor: "#20242F", color: "white" },
+     tertiary: { backgroundColor: "#212634", color: "#F4F8F9" },
      delete: { backgroundColor: "#8F1218", color: "#A9ACB3" },
 };
 
@@ -33,6 +34,6 @@ ButtonComponent.propTypes = {
      height: PropTypes.string,
      alt: PropTypes.string,
      type: PropTypes.string,
-     variant: PropTypes.oneOf(["primary", "secondary", "detele"]),
+     variant: PropTypes.oneOf(["primary", "secondary", "detele", "tertiary"]),
      onClick: PropTypes.func,
 };
