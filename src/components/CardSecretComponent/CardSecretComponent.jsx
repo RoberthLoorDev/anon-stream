@@ -33,12 +33,20 @@ export default function CardSecretComponent() {
                </div>
 
                <div className={style.buttonsContainer}>
-                    <ButtonComponent text="Presentar" variant="tertiary" width="123px" height="40px" icon={icons.playWhite} />
-                    <span className={style.options} onClick={handleModal}>
-                         ⋮
-                    </span>
+                    <div className={style.buttonOptionContainer}>
+                         <ButtonComponent
+                              text="Presentar"
+                              variant="tertiary"
+                              width="123px"
+                              height="40px"
+                              icon={icons.playWhite}
+                         />
+                         <span className={style.options} onClick={handleModal}>
+                              ⋮
+                         </span>
+                    </div>
+                    {openedModal && <SelectSecretModal />}
                </div>
-               {openedModal && <SelectSecretModal />}
           </article>
      );
 }
