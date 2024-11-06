@@ -3,9 +3,16 @@ import CardSecretComponent from "../../components/CardSecretComponent/CardSecret
 import Layout from "../../layout/Layout";
 import stylesHome from "./HomePage.module.css";
 import { useAuth } from "../../context/useAuth";
+import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
+import { getRandomTitleUser } from "../../utils/titleUserRandom";
 
 export default function HomePage() {
-     const { signout } = useAuth();
+     const { signout, user } = useAuth();
+     const userTitle = getRandomTitleUser();
+     console.log(userTitle);
+
+     const profileImage = user.user_metadata.avatar_url;
+     const username = user.user_metadata.name || user.user_metadata.full_name;
 
      return (
           <Layout>
@@ -15,10 +22,10 @@ export default function HomePage() {
 
                          {/* User account */}
                          <div className={stylesHome.userContainer}>
-                              <img src={icons.username} className={stylesHome.iconStreamer} alt="Usuario" />
+                              <img src={profileImage} className={stylesHome.iconStreamer} alt="Usuario" />
                               <div className={stylesHome.nameDescriptionContainer}>
-                                   <span className={stylesHome.nameStreamer}>D0oppa</span>
-                                   <span className={stylesHome.descriptionStreamer}>Streamer de éxito</span>
+                                   <span className={stylesHome.nameStreamer}>{username}</span>
+                                   <span className={stylesHome.descriptionStreamer}>{userTitle}</span>
                               </div>
                               <img className={stylesHome.iconLogout} src={icons.logout} onClick={signout} alt="Cerrar sesión" />
                          </div>
@@ -28,6 +35,13 @@ export default function HomePage() {
                     <div className={stylesHome.bodyHome}>
                          <div className={stylesHome.roomLineText}>
                               <h2 className={stylesHome.titleroom}>Salas</h2>
+                              <ButtonComponent
+                                   text="Crear sala"
+                                   width="160px"
+                                   icon={icons.plus}
+                                   variant="primary"
+                                   height="45px"
+                              />
                          </div>
 
                          <div className={stylesHome.secretsContainer}>

@@ -22,6 +22,8 @@ export const AuthProvider = ({ children }) => {
 
                     setUser(session?.user ?? null);
                     setLoading(false);
+
+                    console.log(user);
                } catch (error) {
                     console.error(`Error al obtener la sesión del usuario: ${error}`);
                     setUser(null);

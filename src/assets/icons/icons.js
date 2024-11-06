@@ -10,6 +10,7 @@ import dateTitle from "./dateSecret.png";
 import playWhite from "./playWhite.png";
 import editWhite from "./editWhite.png";
 import deleteRed from "./delete.png";
+import plus from "./plus.png";
 
 export const icons = {
      emailIcon: email,
@@ -24,4 +25,5 @@ export const icons = {
      playWhite,
      editWhite,
      deleteRed,
+     plus,
 };
