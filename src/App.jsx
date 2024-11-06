@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import SignInPage from "./pages/SignInPage/SignInPage";
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/HomePage/HomePage";
 import "./App.css";
 import SignUpPage from "./pages/SignInPage/SignUpPage";
 import { AuthProvider } from "./context/AuthContext";
