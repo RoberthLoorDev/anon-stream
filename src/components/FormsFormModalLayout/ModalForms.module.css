@@ -1,0 +1,57 @@
+.titleForm {
+     color: #f4f8f9;
+     font-family: Poppins;
+     font-size: 24px;
+     font-style: normal;
+     font-weight: 700;
+     line-height: normal;
+}
+
+.descriptionForm {
+     color: #a9acb3;
+     font-family: Poppins;
+     font-size: 14px;
+     font-style: normal;
+     font-weight: 400;
+     line-height: 20px;
+}
+
+.inputContainer {
+     display: flex;
+     flex-direction: column;
+     gap: 28px;
+     margin: 25px 0;
+}
+
+.switchContainer {
+     display: flex;
+     align-items: center;
+     gap: 20px;
+     margin-top: 35px;
+}
+
+.switchContainer > span {
+     color: #a9acb3;
+     font-family: Poppins;
+     font-size: 16px;
+     font-style: normal;
+     font-weight: 500;
+     line-height: normal;
+}
+
+.switchDescription {
+     margin-top: 5px;
+     color: rgba(169, 172, 179, 0.5);
+     font-family: Poppins;
+     font-size: 12px;
+     font-style: italic;
+     font-weight: 400;
+     line-height: 108%; /* 12.96px */
+}
+
+.buttonContainer {
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+     margin-top: 25px;
+}
