@@ -1,15 +1,17 @@
-import React from "react";
-import InputFormComponent from "../components/InputFormComponent/InputFormComponent";
+import styles from "./ModalLayout.module.css";
+import PropTypes from "prop-types";
 
-export default function ModalLayout() {
+export default function ModalLayout({ children }) {
      return (
-          <div>
-               <form action="">
-                    <InputFormComponent placeholder="Título" />
-                    <InputFormComponent placeholder="Descripción (opcional)" />
-
-                    <span>Activar censura </span>
-               </form>
+          <div className={styles.globalContainer}>
+               {/* form container */}
+               <div className={styles.modalContainer}>
+                    <div className={styles.contentModal}>{children}</div>
+               </div>
           </div>
      );
 }
+
+ModalLayout.propTypes = {
+     children: PropTypes.node,
+};
