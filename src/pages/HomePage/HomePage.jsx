@@ -5,12 +5,14 @@ import stylesHome from "./HomePage.module.css";
 import { useAuth } from "../../context/useAuth";
 import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
 import { getRandomTitleUser } from "../../utils/titleUserRandom";
+import SwitchComponent from "../../components/ToggleSwitch/SwitchComponent";
 
 export default function HomePage() {
      const { signout, user } = useAuth();
      const userTitle = getRandomTitleUser();
 
      const profileImage = user.user_metadata.avatar_url;
+
      const username = user.user_metadata.name || user.user_metadata.full_name;
 
      return (
