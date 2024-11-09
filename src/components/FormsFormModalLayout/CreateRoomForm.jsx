@@ -1,22 +1,32 @@
+import ButtonComponent from "../ButtonComponent/ButtonComponent.jsx";
 import InputComponent from "../InputFormComponent/InputFormComponent.jsx";
 import SwitchComponent from "../ToggleSwitch/SwitchComponent.jsx";
-import ButtonComponent from "../ButtonComponent/ButtonComponent.jsx";
 import styles from "./ModalForms.module.css";
+import useCreateRoom from "../../hooks/useCreateRoom.jsx";
 
 export default function CreateRoomForm() {
+     const { formData, onHandleSubmit, onChange } = useCreateRoom();
+
      return (
-          <form action="">
+          <form onSubmit={onHandleSubmit}>
                <h3 className={styles.titleForm}>Crear sala</h3>
                <p className={styles.descriptionForm}>Crea una sala para que otros usuarios escriban sus secretos o anecdotas</p>
 
                <div className={styles.inputContainer}>
-                    <InputComponent placeholder="Título" name="khjabdsdff" />
-                    <InputComponent placeholder="Descripción (opcional)" height="172px" isTextArea={true} name="khjabdsdff" />
+                    <InputComponent placeholder="Título" name="title" value={formData.title} onChange={onChange} />
+                    <InputComponent
+                         placeholder="Descripción (opcional)"
+                         height="172px"
+                         isTextArea={true}
+                         name="description"
+                         value={formData.description}
+                         onChange={onChange}
+                    />
                </div>
 
                <div className={styles.switchContainer}>
                     <span>Activar censura </span>
-                    <SwitchComponent />
+                    <SwitchComponent name="isSensored" onChange={onChange} value={Boolean(formData.isSensored)} />
                </div>
                <p className={styles.switchDescription}>Permite censurar palabras potencialmente baneables</p>
 
