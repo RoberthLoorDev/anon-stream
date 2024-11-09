@@ -36,8 +36,8 @@ export default function CardSecretComponent() {
                          <ButtonComponent
                               text="Presentar"
                               variant="tertiary"
-                              width="123px"
-                              height="40px"
+                              width="143px"
+                              height="50px"
                               icon={icons.playWhite}
                          />
                          <span className={style.options} onClick={handleModal}>
