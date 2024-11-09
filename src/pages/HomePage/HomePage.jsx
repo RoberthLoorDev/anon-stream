@@ -5,14 +5,13 @@ import stylesHome from "./HomePage.module.css";
 import { useAuth } from "../../context/useAuth";
 import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
 import { getRandomTitleUser } from "../../utils/titleUserRandom";
-import SwitchComponent from "../../components/ToggleSwitch/SwitchComponent";
+import ModalLayout from "../../layout/ModalLayout";
+import CreateRoomForm from "../../components/FormsFormModalLayout/CreateRoomForm";
 
 export default function HomePage() {
      const { signout, user } = useAuth();
      const userTitle = getRandomTitleUser();
-
      const profileImage = user.user_metadata.avatar_url;
-
      const username = user.user_metadata.name || user.user_metadata.full_name;
 
      return (
@@ -42,7 +41,7 @@ export default function HomePage() {
                               <h2 className={stylesHome.titleroom}>Salas</h2>
                               <ButtonComponent
                                    text="Crear sala"
-                                   width="160px"
+                                   width="220px"
                                    icon={icons.plus}
                                    variant="primary"
                                    height="45px"
@@ -56,6 +55,11 @@ export default function HomePage() {
                          </div>
                     </div>
                </div>
+
+               {/* Modal create room */}
+               <ModalLayout>
+                    <CreateRoomForm />
+               </ModalLayout>
           </Layout>
      );
 }
