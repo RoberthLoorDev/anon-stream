@@ -5,6 +5,7 @@ import "./App.css";
 import SignUpPage from "./pages/SignInPage/SignUpPage";
 import { AuthProvider } from "./context/AuthContext";
 import { ProtectedRoute } from "./context/ProtectedRoute";
+import { Toaster } from "react-hot-toast";
 
 function App() {
      return (
@@ -21,6 +22,15 @@ function App() {
                          }
                     />
                </Routes>
+
+               <Toaster
+                    toastOptions={{
+                         style: {
+                              fontSize: "18px",
+                         },
+                         duration: 5000,
+                    }}
+               />
           </AuthProvider>
      );
 }

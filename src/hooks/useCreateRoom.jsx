@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createRoom } from "../supabase/rooms";
+import toast from "react-hot-toast";
 
 export default function useCreateRoom() {
      const [formData, setformData] = useState({
@@ -19,9 +20,15 @@ export default function useCreateRoom() {
      const onHandleSubmit = async (event) => {
           event.preventDefault();
 
-          const response = await createRoom(formData);
-          const statusResponse = response.success;
+          const responsePromise = createRoom(formData);
 
+          toast.promise(responsePromise, {
+               loading: "Creando sala",
+               success: "Sala creada correctamente",
+               error: "Error al crear la sala",
+          });
+
+          const statusResponse = (await responsePromise).success;
           if (statusResponse) cleanValues();
      };
 
