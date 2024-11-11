@@ -23,3 +23,13 @@
      max-height: 100%;
      padding: 27px 18px;
 }
+
+@media (min-width: 768px) {
+     .modalContainer {
+          width: 522px;
+     }
+
+     .contentModal {
+          padding: 37px 31px;
+     }
+}
