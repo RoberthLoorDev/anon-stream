@@ -62,7 +62,7 @@ export default function HomePage() {
 
                {/* Modal create room */}
                {openModal ? (
-                    <ModalLayout openModal={openModal}>
+                    <ModalLayout openModal={openModal} handleModal={handleModal}>
                          <CreateRoomForm handleModal={handleModal} />
                     </ModalLayout>
                ) : (
