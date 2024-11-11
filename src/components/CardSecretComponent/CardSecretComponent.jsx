@@ -3,8 +3,9 @@ import { icons } from "../../assets/icons/icons";
 import ButtonComponent from "../ButtonComponent/ButtonComponent";
 import SelectSecretModal from "../SelectSecretModal/SelectSecretModal";
 import style from "./CardSecretComponent.module.css";
+import PropTypes from "prop-types";
 
-export default function CardSecretComponent() {
+export default function CardSecretComponent({ title = "Título", created_at, roomId }) {
      const [openedModal, setOpenedModal] = useState(false);
 
      const handleModal = () => {
@@ -22,12 +23,12 @@ export default function CardSecretComponent() {
                <div className={style.secretDataContainer}>
                     <div className={style.secretData}>
                          <img src={icons.secretTitle} alt="Título del secreto" className={style.iconSecretTitle} />
-                         <h3 className={style.titleSecret}>Secretos para Navidad</h3>
+                         <h3 className={style.titleSecret}>{title}</h3>
                     </div>
 
                     <div className={style.secretData}>
                          <img src={icons.dateTitle} alt="Título del secreto" className={style.iconSecretDate} />
-                         <span className={style.secretDate}>10 de noviembre del 2024</span>
+                         <span className={style.secretDate}>{created_at}</span>
                     </div>
                </div>
 
@@ -49,3 +50,9 @@ export default function CardSecretComponent() {
           </article>
      );
 }
+
+CardSecretComponent.propTypes = {
+     title: PropTypes.string.isRequired,
+     created_at: PropTypes.string,
+     roomId: PropTypes.number,
+};

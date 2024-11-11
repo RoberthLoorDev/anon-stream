@@ -1,13 +1,15 @@
+import { useEffect } from "react";
 import { icons } from "../../assets/icons/icons";
-import CardSecretComponent from "../../components/CardSecretComponent/CardSecretComponent";
-import Layout from "../../layout/Layout";
-import stylesHome from "./HomePage.module.css";
-import { useAuth } from "../../context/useAuth";
 import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
-import { getRandomTitleUser } from "../../utils/titleUserRandom";
-import ModalLayout from "../../layout/ModalLayout";
 import CreateRoomForm from "../../components/FormsFormModalLayout/CreateRoomForm";
+import RoomsContainer from "../../components/RoomsContainer/RoomsContainer";
+import { useAuth } from "../../context/useAuth";
 import { useOpenModal } from "../../hooks/useOpenModal";
+import Layout from "../../layout/Layout";
+import ModalLayout from "../../layout/ModalLayout";
+import { getRooms } from "../../supabase/rooms";
+import { getRandomTitleUser } from "../../utils/titleUserRandom";
+import stylesHome from "./HomePage.module.css";
 
 export default function HomePage() {
      const { signout, user } = useAuth();
@@ -16,6 +18,17 @@ export default function HomePage() {
      const username = user.user_metadata.name || user.user_metadata.full_name;
 
      const { handleModal, openModal } = useOpenModal();
+
+     //
+
+     useEffect(() => {
+          const getRoom = async () => {
+               const rooms = await getRooms();
+               console.log(rooms);
+          };
+
+          getRoom();
+     }, []);
 
      return (
           <Layout>
@@ -52,11 +65,8 @@ export default function HomePage() {
                               />
                          </div>
 
-                         <div className={stylesHome.secretsContainer}>
-                              <CardSecretComponent />
-                              <CardSecretComponent />
-                              <CardSecretComponent />
-                         </div>
+                         {/* rooms */}
+                         <RoomsContainer />
                     </div>
                </div>
 

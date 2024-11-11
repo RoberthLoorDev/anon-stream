@@ -42,3 +42,37 @@ export const createRoom = async (roomData) => {
           };
      }
 };
+
+export const getRooms = async () => {
+     try {
+          const {
+               data: { session },
+          } = await supabase.auth.getSession();
+
+          if (!session) {
+               return {
+                    success: false,
+                    message: "Usuario no autenticado",
+               };
+          }
+
+          const userId = session?.user.id;
+
+          const { data, error } = await supabase.from("rooms").select("*").eq("user_id", userId);
+
+          if (error) throw new Error(error.message);
+
+          return {
+               success: true,
+               data,
+               message: "Datos obtenidos de forma exitosa",
+          };
+     } catch (error) {
+          console.error(`Error al obtener los datos: ${error}`);
+
+          return {
+               success: false,
+               message: `Error al obtener los datos: ${error}`,
+          };
+     }
+};
