@@ -20,7 +20,6 @@ export default function useCreateRoom() {
           event.preventDefault();
 
           const response = await createRoom(formData);
-          console.log(formData);
           const statusResponse = response.success;
 
           if (statusResponse) cleanValues();

@@ -7,12 +7,15 @@ import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
 import { getRandomTitleUser } from "../../utils/titleUserRandom";
 import ModalLayout from "../../layout/ModalLayout";
 import CreateRoomForm from "../../components/FormsFormModalLayout/CreateRoomForm";
+import { useOpenModal } from "../../hooks/useOpenModal";
 
 export default function HomePage() {
      const { signout, user } = useAuth();
      const userTitle = getRandomTitleUser();
      const profileImage = user.user_metadata.avatar_url;
      const username = user.user_metadata.name || user.user_metadata.full_name;
+
+     const { handleModal, openModal } = useOpenModal();
 
      return (
           <Layout>
@@ -45,6 +48,7 @@ export default function HomePage() {
                                    icon={icons.plus}
                                    variant="primary"
                                    height="45px"
+                                   onClick={handleModal}
                               />
                          </div>
 
@@ -57,9 +61,13 @@ export default function HomePage() {
                </div>
 
                {/* Modal create room */}
-               <ModalLayout>
-                    <CreateRoomForm />
-               </ModalLayout>
+               {openModal ? (
+                    <ModalLayout openModal={openModal}>
+                         <CreateRoomForm handleModal={handleModal} />
+                    </ModalLayout>
+               ) : (
+                    " "
+               )}
           </Layout>
      );
 }

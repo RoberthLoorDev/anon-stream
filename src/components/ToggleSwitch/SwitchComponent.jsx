@@ -2,8 +2,6 @@ import styles from "./SwitchComponent.module.css";
 import PropTypes from "prop-types";
 
 export default function SwitchComponent({ value, name, onChange }) {
-     console.log(value);
-
      return (
           <label className={styles.toggleSwitch}>
                <input type="checkbox" value={value} onChange={(event) => onChange(event)} name={name} />

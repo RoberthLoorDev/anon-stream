@@ -3,8 +3,9 @@ import InputComponent from "../InputFormComponent/InputFormComponent.jsx";
 import SwitchComponent from "../ToggleSwitch/SwitchComponent.jsx";
 import styles from "./ModalForms.module.css";
 import useCreateRoom from "../../hooks/useCreateRoom.jsx";
+import PropTypes from "prop-types";
 
-export default function CreateRoomForm() {
+export default function CreateRoomForm({ handleModal }) {
      const { formData, onHandleSubmit, onChange } = useCreateRoom();
 
      return (
@@ -32,8 +33,12 @@ export default function CreateRoomForm() {
 
                <div className={styles.buttonContainer}>
                     <ButtonComponent variant="primary" text="Crear" />
-                    <ButtonComponent variant="tertiary" text="Cancelar" />
+                    <ButtonComponent variant="tertiary" text="Cancelar" onClick={handleModal} type="button" />
                </div>
           </form>
      );
 }
+
+CreateRoomForm.propTypes = {
+     handleModal: PropTypes.func,
+};
