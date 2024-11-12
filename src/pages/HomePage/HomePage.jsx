@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { icons } from "../../assets/icons/icons";
 import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
 import CreateRoomForm from "../../components/FormsFormModalLayout/CreateRoomForm";
-import RoomsContainer from "../../components/RoomsContainer/RoomsContainer";
+import RoomsContainer from "../../components/RoomsContainer/RoomsSecretContainer";
 import { useAuth } from "../../context/useAuth";
 import { useOpenModal } from "../../hooks/useOpenModal";
 import Layout from "../../layout/Layout";
@@ -23,8 +23,7 @@ export default function HomePage() {
 
      useEffect(() => {
           const getRoom = async () => {
-               const rooms = await getRooms();
-               console.log(rooms);
+               await getRooms();
           };
 
           getRoom();

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { icons } from "../../assets/icons/icons";
 import ButtonComponent from "../ButtonComponent/ButtonComponent";
-import SelectSecretModal from "../SelectSecretModal/SelectSecretModal";
-import style from "./CardSecretComponent.module.css";
+import SelectSecretModal from "../SelectRoomSecretModal/SelectRoomSecretModal";
+import style from "./CardRoomSecretComponent.module.css";
 import PropTypes from "prop-types";
 
 export default function CardSecretComponent({ title = "Título", created_at, roomId }) {
@@ -11,7 +11,6 @@ export default function CardSecretComponent({ title = "Título", created_at, roo
      const handleModal = () => {
           setOpenedModal(!openedModal);
      };
-
      return (
           <article className={style.secretContainer}>
                <div className={style.titleContainer}>

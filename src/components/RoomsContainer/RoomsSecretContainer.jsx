@@ -1,5 +1,5 @@
-import CardSecretComponent from "../CardSecretComponent/CardSecretComponent";
-import styles from "./RoomsContainer.module.css";
+import CardSecretComponent from "../RoomSecretComponent/CardRoomSecretComponent";
+import styles from "./RoomsSecretContainer.module.css";
 import useGetRooms from "../../hooks/useGetRooms";
 
 export default function RoomsContainer() {

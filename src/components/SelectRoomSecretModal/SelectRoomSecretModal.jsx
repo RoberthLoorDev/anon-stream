@@ -1,4 +1,4 @@
-import stylesModal from "./SelectSecretModal.module.css";
+import stylesModal from "./SelectRoomSecretModal.module.css";
 import { icons } from "../../assets/icons/icons";
 
 export default function SelectSecretModal() {
