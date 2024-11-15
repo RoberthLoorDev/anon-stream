@@ -5,8 +5,8 @@ import styles from "./ModalForms.module.css";
 import useCreateRoom from "../../hooks/useCreateRoom.jsx";
 import PropTypes from "prop-types";
 
-export default function CreateRoomForm({ handleModal }) {
-     const { formData, onHandleSubmit, onChange } = useCreateRoom();
+export default function CreateRoomForm({ handleModal, fetchRooms }) {
+     const { formData, onHandleSubmit, onChange } = useCreateRoom(fetchRooms);
 
      return (
           <form onSubmit={onHandleSubmit}>
@@ -41,4 +41,5 @@ export default function CreateRoomForm({ handleModal }) {
 
 CreateRoomForm.propTypes = {
      handleModal: PropTypes.func,
+     fetchRooms: PropTypes.func,
 };

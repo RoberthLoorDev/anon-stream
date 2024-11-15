@@ -1,13 +1,12 @@
-import { useEffect } from "react";
 import { icons } from "../../assets/icons/icons";
 import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
 import CreateRoomForm from "../../components/FormsFormModalLayout/CreateRoomForm";
 import RoomsContainer from "../../components/RoomsContainer/RoomsSecretContainer";
 import { useAuth } from "../../context/useAuth";
+import useGetRooms from "../../hooks/useGetRooms";
 import { useOpenModal } from "../../hooks/useOpenModal";
 import Layout from "../../layout/Layout";
 import ModalLayout from "../../layout/ModalLayout";
-import { getRooms } from "../../supabase/rooms";
 import { getRandomTitleUser } from "../../utils/titleUserRandom";
 import stylesHome from "./HomePage.module.css";
 
@@ -18,16 +17,9 @@ export default function HomePage() {
      const username = user.user_metadata.name || user.user_metadata.full_name;
 
      const { handleModal, openModal } = useOpenModal();
+     const { rooms, fetchRooms, error, loading } = useGetRooms();
 
      //
-
-     useEffect(() => {
-          const getRoom = async () => {
-               await getRooms();
-          };
-
-          getRoom();
-     }, []);
 
      return (
           <Layout>
@@ -65,14 +57,14 @@ export default function HomePage() {
                          </div>
 
                          {/* rooms */}
-                         <RoomsContainer />
+                         <RoomsContainer error={error} loading={loading} rooms={rooms} />
                     </div>
                </div>
 
                {/* Modal create room */}
                {openModal ? (
                     <ModalLayout openModal={openModal} handleModal={handleModal}>
-                         <CreateRoomForm handleModal={handleModal} />
+                         <CreateRoomForm handleModal={handleModal} fetchRooms={fetchRooms} />
                     </ModalLayout>
                ) : (
                     " "

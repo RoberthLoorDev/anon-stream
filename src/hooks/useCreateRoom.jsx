@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createRoom } from "../supabase/rooms";
 import toast from "react-hot-toast";
 
-export default function useCreateRoom() {
+export default function useCreateRoom(fetchRooms) {
      const [formData, setformData] = useState({
           title: "",
           description: "",
@@ -30,6 +30,7 @@ export default function useCreateRoom() {
 
           const statusResponse = (await responsePromise).success;
           if (statusResponse) cleanValues();
+          fetchRooms();
      };
 
      const onChange = (event) => {

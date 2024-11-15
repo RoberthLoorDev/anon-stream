@@ -7,21 +7,21 @@ export default function useGetRooms() {
      const [loading, setLoading] = useState(true);
      const [error, setError] = useState(null);
 
+     const fetchRooms = async () => {
+          const response = await getRooms();
+          if (!response.success) setError("Error al obtener las salas");
+          setRooms(response.data);
+          setLoading(false);
+     };
+
      useEffect(() => {
-          const getRoomsByUser = async () => {
-               const response = await getRooms();
-
-               if (!response.success) setError("Error al obtener las salas");
-
-               setRooms(response.data);
-               setLoading(false);
-          };
-          getRoomsByUser();
+          fetchRooms();
      }, []);
 
      return {
           rooms,
           loading,
           error,
+          fetchRooms,
      };
 }
