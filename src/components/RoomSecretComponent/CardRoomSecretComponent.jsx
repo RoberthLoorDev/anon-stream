@@ -4,6 +4,7 @@ import ButtonComponent from "../ButtonComponent/ButtonComponent";
 import SelectSecretModal from "../SelectRoomSecretModal/SelectRoomSecretModal";
 import style from "./CardRoomSecretComponent.module.css";
 import PropTypes from "prop-types";
+import { formatDate } from "../../utils/dateUtils";
 
 export default function CardSecretComponent({ title = "Título", created_at, roomId }) {
      const [openedModal, setOpenedModal] = useState(false);
@@ -27,7 +28,7 @@ export default function CardSecretComponent({ title = "Título", created_at, roo
 
                     <div className={style.secretData}>
                          <img src={icons.dateTitle} alt="Título del secreto" className={style.iconSecretDate} />
-                         <span className={style.secretDate}>{created_at}</span>
+                         <span className={style.secretDate}>{formatDate(created_at)}</span>
                     </div>
                </div>
 
