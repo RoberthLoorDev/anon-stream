@@ -58,7 +58,11 @@ export const getRooms = async () => {
 
           const userId = session?.user.id;
 
-          const { data, error } = await supabase.from("rooms").select("*").eq("user_id", userId);
+          const { data, error } = await supabase
+               .from("rooms")
+               .select("*")
+               .eq("user_id", userId)
+               .order("created_at", { ascending: false });
 
           if (error) throw new Error(error.message);
 
