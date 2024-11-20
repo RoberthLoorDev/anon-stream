@@ -82,8 +82,6 @@ export const getRooms = async () => {
 };
 
 export const updateRoom = async (roomInfo) => {
-     console.log(roomInfo);
-
      try {
           const {
                data: { session },
@@ -110,6 +108,6 @@ export const updateRoom = async (roomInfo) => {
                message: "Actualizacion realizada exitosamente",
           };
      } catch (error) {
-          console.log(`Error al actualizar la sala: ${error}`);
+          console.error(`Error al actualizar la sala: ${error}`);
      }
 };
