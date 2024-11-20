@@ -1,14 +1,13 @@
 import { icons } from "../../assets/icons/icons";
 import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
-import CreateRoomForm from "../../components/FormsFormModalLayout/CreateRoomForm";
 import RoomsContainer from "../../components/RoomsContainer/RoomsSecretContainer";
 import { useAuth } from "../../context/useAuth";
-import useGetRooms from "../../hooks/useGetRooms";
 import { useOpenModal } from "../../hooks/useOpenModal";
 import Layout from "../../layout/Layout";
 import ModalLayout from "../../layout/ModalLayout";
 import { getRandomTitleUser } from "../../utils/titleUserRandom";
 import stylesHome from "./HomePage.module.css";
+import CreateRoomForm from "../../components/FormsFormModalLayout/CreateRoomForm";
 
 export default function HomePage() {
      const { signout, user } = useAuth();
@@ -17,9 +16,7 @@ export default function HomePage() {
      const username = user.user_metadata.name || user.user_metadata.full_name;
 
      const { handleModal, openModal } = useOpenModal();
-     const { rooms, fetchRooms, error, loading } = useGetRooms();
-
-     //
+     // const { rooms, fetchRooms, error, loading } = useGetRooms();
 
      return (
           <Layout>
@@ -57,14 +54,14 @@ export default function HomePage() {
                          </div>
 
                          {/* rooms */}
-                         <RoomsContainer error={error} loading={loading} rooms={rooms} />
+                         <RoomsContainer />
                     </div>
                </div>
 
                {/* Modal create room */}
                {openModal ? (
                     <ModalLayout openModal={openModal} handleModal={handleModal}>
-                         <CreateRoomForm handleModal={handleModal} fetchRooms={fetchRooms} />
+                         <CreateRoomForm handleModal={handleModal} />
                     </ModalLayout>
                ) : (
                     " "
