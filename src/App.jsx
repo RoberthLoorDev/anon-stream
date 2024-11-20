@@ -6,6 +6,7 @@ import SignUpPage from "./pages/SignInPage/SignUpPage";
 import { AuthProvider } from "./context/AuthContext";
 import { ProtectedRoute } from "./context/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
+import { RoomProvider } from "./context/RoomsContext";
 
 function App() {
      return (
@@ -17,7 +18,9 @@ function App() {
                          path="/home"
                          element={
                               <ProtectedRoute>
-                                   <HomePage />
+                                   <RoomProvider>
+                                        <HomePage />
+                                   </RoomProvider>
                               </ProtectedRoute>
                          }
                     />
