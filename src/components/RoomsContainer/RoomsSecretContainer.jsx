@@ -9,7 +9,14 @@ export default function RoomsContainer({ rooms, error, loading }) {
      return (
           <div className={styles.secretsContainer}>
                {rooms.map((room) => (
-                    <CardSecretComponent key={room.id} roomId={room.id} title={room.title} created_at={room.created_at} />
+                    <CardSecretComponent
+                         key={room.id}
+                         roomId={room.id}
+                         title={room.title}
+                         created_at={room.created_at}
+                         description={room.description}
+                         isSensored={room.is_sensored}
+                    />
                ))}
           </div>
      );

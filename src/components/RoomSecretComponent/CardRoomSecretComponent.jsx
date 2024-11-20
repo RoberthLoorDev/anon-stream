@@ -6,8 +6,15 @@ import style from "./CardRoomSecretComponent.module.css";
 import PropTypes from "prop-types";
 import { formatDate } from "../../utils/dateUtils";
 
-export default function CardSecretComponent({ title = "Título", created_at, roomId }) {
+export default function CardSecretComponent({ title = "Título", created_at, roomId, description, isSensored }) {
      const [openedModal, setOpenedModal] = useState(false);
+
+     const roomData = {
+          title: title,
+          description: description,
+          roomid: roomId,
+          isSensored: isSensored,
+     };
 
      const handleModal = () => {
           setOpenedModal(!openedModal);
@@ -45,7 +52,7 @@ export default function CardSecretComponent({ title = "Título", created_at, roo
                               ⋮
                          </span>
                     </div>
-                    {openedModal && <SelectSecretModal />}
+                    {openedModal && <SelectSecretModal roomData={roomData} />}
                </div>
           </article>
      );
@@ -55,4 +62,6 @@ CardSecretComponent.propTypes = {
      title: PropTypes.string.isRequired,
      created_at: PropTypes.string,
      roomId: PropTypes.number,
+     description: PropTypes.string,
+     isSensored: PropTypes.bool,
 };

@@ -80,3 +80,36 @@ export const getRooms = async () => {
           };
      }
 };
+
+export const updateRoom = async (roomInfo) => {
+     console.log(roomInfo);
+
+     try {
+          const {
+               data: { session },
+          } = await supabase.auth.getSession();
+
+          if (!session) {
+               return {
+                    success: false,
+                    message: "Usuario no autenticado",
+               };
+          }
+
+          const { title, description, isSensored, roomid } = roomInfo;
+          const { data, error } = await supabase
+               .from("rooms")
+               .update({ title, description, is_sensored: isSensored })
+               .eq("id", roomid);
+
+          if (error) throw new Error(error.code);
+
+          return {
+               success: true,
+               data,
+               message: "Actualizacion realizada exitosamente",
+          };
+     } catch (error) {
+          console.log(`Error al actualizar la sala: ${error}`);
+     }
+};
