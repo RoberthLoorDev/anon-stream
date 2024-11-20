@@ -1,8 +1,10 @@
 import CardSecretComponent from "../RoomSecretComponent/CardRoomSecretComponent";
 import styles from "./RoomsSecretContainer.module.css";
-import PropTypes from "prop-types";
+import { useRooms } from "../../context/RoomsContext";
 
-export default function RoomsContainer({ rooms, error, loading }) {
+export default function RoomsContainer() {
+     const { rooms, loading, error } = useRooms();
+
      if (loading) return <div>Cargando...</div>;
      if (error) return <div>{error}</div>;
 
@@ -21,8 +23,3 @@ export default function RoomsContainer({ rooms, error, loading }) {
           </div>
      );
 }
-RoomsContainer.propTypes = {
-     rooms: PropTypes.array,
-     error: PropTypes.string,
-     loading: PropTypes.bool.isRequired,
-};

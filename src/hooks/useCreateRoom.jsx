@@ -1,16 +1,16 @@
 import { useState } from "react";
-import { createRoom } from "../supabase/rooms";
-import toast from "react-hot-toast";
+import { useRooms } from "../context/RoomsContext";
 
-export default function useCreateRoom(fetchRooms) {
-     const [formData, setformData] = useState({
+export default function useCreateRoom() {
+     const { handleCreateRooms } = useRooms();
+     const [formData, setFormData] = useState({
           title: "",
           description: "",
           isSensored: false,
      });
 
      const cleanValues = () => {
-          setformData({
+          setFormData({
                title: " ",
                description: " ",
                isSensored: false,
@@ -19,24 +19,14 @@ export default function useCreateRoom(fetchRooms) {
 
      const onHandleSubmit = async (event) => {
           event.preventDefault();
-
-          const responsePromise = createRoom(formData);
-
-          toast.promise(responsePromise, {
-               loading: "Creando sala",
-               success: "Sala creada correctamente",
-               error: "Error al crear la sala",
-          });
-
-          const statusResponse = (await responsePromise).success;
-          if (statusResponse) cleanValues();
-          fetchRooms();
+          await handleCreateRooms(formData);
+          cleanValues();
      };
 
      const onChange = (event) => {
           const { name, type, checked, value } = event.target;
 
-          setformData({
+          setFormData({
                ...formData,
                [name]: type === "checkbox" ? checked : value,
           });

@@ -1,12 +1,40 @@
+import PropTypes from "prop-types";
 import ButtonComponent from "../ButtonComponent/ButtonComponent.jsx";
 import InputComponent from "../InputFormComponent/InputFormComponent.jsx";
 import SwitchComponent from "../ToggleSwitch/SwitchComponent.jsx";
 import styles from "./ModalForms.module.css";
-import useCreateRoom from "../../hooks/useCreateRoom.jsx";
-import PropTypes from "prop-types";
+import { useState } from "react";
+import { useRooms } from "../../context/RoomsContext.jsx";
 
-export default function CreateRoomForm({ handleModal, fetchRooms }) {
-     const { formData, onHandleSubmit, onChange } = useCreateRoom(fetchRooms);
+export default function CreateRoomForm({ handleModal }) {
+     const { handleCreateRooms } = useRooms();
+     const [formData, setFormData] = useState({
+          title: "",
+          description: "",
+          isSensored: false,
+     });
+
+     const cleanValues = () => {
+          setFormData({
+               title: " ",
+               description: " ",
+               isSensored: false,
+          });
+     };
+
+     const onHandleSubmit = async (event) => {
+          event.preventDefault();
+          await handleCreateRooms(formData);
+          cleanValues();
+     };
+
+     const onChange = (event) => {
+          const { name, type, checked, value } = event.target;
+          setFormData({
+               ...formData,
+               [name]: type === "checkbox" ? checked : value,
+          });
+     };
 
      return (
           <form onSubmit={onHandleSubmit}>
@@ -41,5 +69,4 @@ export default function CreateRoomForm({ handleModal, fetchRooms }) {
 
 CreateRoomForm.propTypes = {
      handleModal: PropTypes.func,
-     fetchRooms: PropTypes.func,
 };
