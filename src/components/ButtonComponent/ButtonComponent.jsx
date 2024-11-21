@@ -5,7 +5,7 @@ const variantButton = {
      primary: { backgroundColor: "597BDA", color: "#121820" },
      secondary: { backgroundColor: "#20242F", color: "white" },
      tertiary: { backgroundColor: "#212634", color: "#F4F8F9" },
-     delete: { backgroundColor: "#8F1218", color: "#A9ACB3" },
+     delete: { backgroundColor: "#8F1218", color: "#121820" },
 };
 
 export default function ButtonComponent({ text, icon, width, height, alt, type, variant = "secondary", onClick }) {
@@ -34,6 +34,6 @@ ButtonComponent.propTypes = {
      height: PropTypes.string,
      alt: PropTypes.string,
      type: PropTypes.string,
-     variant: PropTypes.oneOf(["primary", "secondary", "detele", "tertiary"]),
+     variant: PropTypes.oneOf(["primary", "secondary", "delete", "tertiary"]),
      onClick: PropTypes.func,
 };
