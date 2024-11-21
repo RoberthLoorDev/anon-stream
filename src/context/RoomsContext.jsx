@@ -29,50 +29,56 @@ export const RoomProvider = ({ children }) => {
      }, []);
 
      //create rooms
-     const handleCreateRooms = useCallback(async (formData) => {
-          setLoading(true);
-          setError(null);
-          try {
-               const responsePromise = createRoom(formData);
+     const handleCreateRooms = useCallback(
+          async (formData) => {
+               setLoading(true);
+               setError(null);
+               try {
+                    const responsePromise = createRoom(formData);
 
-               toast.promise(responsePromise, {
-                    loading: "Creando sala",
-                    success: "Sala creada correctamente",
-                    error: "Error al crear la sala",
-               });
+                    toast.promise(responsePromise, {
+                         loading: "Creando sala",
+                         success: "Sala creada correctamente",
+                         error: "Error al crear la sala",
+                    });
 
-               await handleFetchRooms();
-          } catch (error) {
-               console.error(error.message);
-               setError(error.message || "Error inesperado");
-          } finally {
-               setLoading(false);
-          }
-     }, []);
+                    await handleFetchRooms();
+               } catch (error) {
+                    console.error(error.message);
+                    setError(error.message || "Error inesperado");
+               } finally {
+                    setLoading(false);
+               }
+          },
+          [handleFetchRooms]
+     );
 
      //TIENES QUE SEGUIR
 
      //update rooms
-     const handleUpdateRoom = async (roomInfo) => {
-          setLoading(true);
+     const handleUpdateRoom = useCallback(
+          async (roomInfo) => {
+               setLoading(true);
 
-          try {
-               const responsePromisse = updateRoom(roomInfo);
+               try {
+                    const responsePromisse = updateRoom(roomInfo);
 
-               toast.promise(responsePromisse, {
-                    loading: "Actualizando sala",
-                    success: "Sala actualizada correctamente",
-                    error: "Error al actualizar la sala",
-               });
+                    toast.promise(responsePromisse, {
+                         loading: "Actualizando sala",
+                         success: "Sala actualizada correctamente",
+                         error: "Error al actualizar la sala",
+                    });
 
-               handleFetchRooms();
-          } catch (error) {
-               console.error(`Error al actualizar la sala: ${error.message}`);
-               setError(error.message || "Error inesperado");
-          } finally {
-               setLoading(false);
-          }
-     };
+                    await handleFetchRooms();
+               } catch (error) {
+                    console.error(`Error al actualizar la sala: ${error.message}`);
+                    setError(error.message || "Error inesperado");
+               } finally {
+                    setLoading(false);
+               }
+          },
+          [handleFetchRooms]
+     );
 
      useEffect(() => {
           handleFetchRooms();

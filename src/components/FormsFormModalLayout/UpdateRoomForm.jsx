@@ -1,12 +1,39 @@
 import PropTypes from "prop-types";
-import useUpdateRoom from "../../hooks/useUpdateRoom.jsx";
+import { useState } from "react";
+import { useRooms } from "../../context/RoomsContext.jsx";
 import ButtonComponent from "../ButtonComponent/ButtonComponent.jsx";
 import InputComponent from "../InputFormComponent/InputFormComponent.jsx";
 import SwitchComponent from "../ToggleSwitch/SwitchComponent.jsx";
 import styles from "./ModalForms.module.css";
 
-export default function UpdateRoomForm({ handleModal, fetchRooms, roomData }) {
-     const { formData, onHandleSubmit, onChange } = useUpdateRoom(fetchRooms, roomData);
+export default function UpdateRoomForm({ handleModal, roomData }) {
+     const { handleUpdateRoom, handleFetchRooms } = useRooms();
+     const [formData, setformData] = useState(roomData);
+
+     const onHandleSubmit = async (event) => {
+          event.preventDefault();
+          await handleUpdateRoom(formData);
+          await handleFetchRooms();
+          cleanValues();
+          handleModal();
+     };
+
+     const onChange = (event) => {
+          const { name, type, checked, value } = event.target;
+
+          setformData({
+               ...formData,
+               [name]: type === "checkbox" ? checked : value,
+          });
+     };
+
+     const cleanValues = () => {
+          setformData({
+               title: " ",
+               description: " ",
+               isSensored: false,
+          });
+     };
 
      return (
           <form onSubmit={onHandleSubmit}>
@@ -43,6 +70,5 @@ export default function UpdateRoomForm({ handleModal, fetchRooms, roomData }) {
 
 UpdateRoomForm.propTypes = {
      handleModal: PropTypes.func,
-     fetchRooms: PropTypes.func,
      roomData: PropTypes.object,
 };

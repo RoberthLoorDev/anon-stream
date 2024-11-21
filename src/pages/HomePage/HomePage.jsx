@@ -16,7 +16,6 @@ export default function HomePage() {
      const username = user.user_metadata.name || user.user_metadata.full_name;
 
      const { handleModal, openModal } = useOpenModal();
-     // const { rooms, fetchRooms, error, loading } = useGetRooms();
 
      return (
           <Layout>

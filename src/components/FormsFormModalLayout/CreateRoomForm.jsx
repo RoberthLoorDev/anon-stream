@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useRooms } from "../../context/RoomsContext.jsx";
 
 export default function CreateRoomForm({ handleModal }) {
-     const { handleCreateRooms } = useRooms();
+     const { handleCreateRooms, handleFetchRooms } = useRooms();
      const [formData, setFormData] = useState({
           title: "",
           description: "",
@@ -25,7 +25,9 @@ export default function CreateRoomForm({ handleModal }) {
      const onHandleSubmit = async (event) => {
           event.preventDefault();
           await handleCreateRooms(formData);
+          await handleFetchRooms();
           cleanValues();
+          handleModal();
      };
 
      const onChange = (event) => {
