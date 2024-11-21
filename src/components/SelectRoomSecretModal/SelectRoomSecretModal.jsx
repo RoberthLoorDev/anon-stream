@@ -4,25 +4,27 @@ import ModalLayout from "../../layout/ModalLayout";
 import { useState } from "react";
 import UpdateRoomForm from "../FormsFormModalLayout/UpdateRoomForm";
 import PropTypes from "prop-types";
+import DeleteRoomForm from "../FormsFormModalLayout/DeleteRoomForm";
 
 export default function SelectSecretModal({ roomData }) {
-     const [openModalEdit, setOpenModalEdit] = useState(false);
+     const [modalInfo, setModalInfo] = useState({ open: false, type: "" });
 
-     const handleModal = () => setOpenModalEdit(!openModalEdit);
+     const handleModal = (type) => setModalInfo({ open: !modalInfo.open, type });
 
      return (
           <div>
-               <ModalLayout handleModal={handleModal} openModal={openModalEdit}>
-                    <UpdateRoomForm handleModal={handleModal} roomData={roomData}></UpdateRoomForm>
+               <ModalLayout handleModal={() => handleModal} openModal={modalInfo.open}>
+                    {modalInfo.type === "edit" && <UpdateRoomForm handleModal={handleModal} roomData={roomData} />}
+                    {modalInfo.type === "delete" && <DeleteRoomForm handleModal={handleModal} roomData={roomData} />}
                </ModalLayout>
 
                <div className={stylesModal.modalContainer}>
-                    <button className={stylesModal.option}>
+                    <button className={stylesModal.option} onClick={() => handleModal("edit")}>
                          <img src={icons.editWhite} alt="Editar sala" className={stylesModal.iconOption} />
-                         <span onClick={handleModal}>Editar</span>
+                         <span>Editar</span>
                     </button>
 
-                    <button className={stylesModal.option}>
+                    <button className={stylesModal.option} onClick={() => handleModal("delete")}>
                          <img src={icons.deleteRed} alt="Editar sala" className={stylesModal.iconOption} />
                          <span className={stylesModal.textDelete}>Eliminar</span>
                     </button>

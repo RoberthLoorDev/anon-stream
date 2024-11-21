@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { supabase } from "../supabaseClient";
 
 export const createRoom = async (roomData) => {
@@ -109,5 +110,37 @@ export const updateRoom = async (roomInfo) => {
           };
      } catch (error) {
           console.error(`Error al actualizar la sala: ${error}`);
+     }
+};
+
+//detele room
+export const handleDeleteRoom = async (roomId) => {
+     try {
+          const {
+               data: { session },
+          } = await supabase.auth.getSession();
+
+          if (!session) {
+               return {
+                    success: false,
+                    message: "Usuario no autenticado",
+               };
+          }
+
+          const { data, error } = await supabase.from("rooms").delete().eq("id", roomId);
+
+          if (error) throw new Error(error.message);
+
+          return {
+               success: true,
+               data,
+               message: "Sala eliminada con exito",
+          };
+     } catch (error) {
+          console.error(`Error al borrar el registro: ${error}`);
+          return {
+               success: false,
+               message: `Error al borrar la sala: ${error}`,
+          };
      }
 };

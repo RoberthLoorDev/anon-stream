@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { createContext, useCallback, useContext, useState } from "react";
 import toast from "react-hot-toast";
-import { getRooms, updateRoom, createRoom } from "../supabase/rooms";
+import { getRooms, updateRoom, createRoom, handleDeleteRoom } from "../supabase/rooms";
 import { useEffect } from "react";
 
 const RoomsContext = createContext();
@@ -80,12 +80,37 @@ export const RoomProvider = ({ children }) => {
           [handleFetchRooms]
      );
 
+     //delete rooms
+     const handleDeleteRooms = useCallback(
+          async (roomId) => {
+               setLoading(true);
+               try {
+                    const responsePromisse = handleDeleteRoom(roomId);
+
+                    toast.promise(responsePromisse, {
+                         loading: "Actualizando sala",
+                         success: "Sala actualizada correctamente",
+                         error: "Error al actualizar la sala",
+                    });
+
+                    await handleFetchRooms();
+               } catch (error) {
+                    console.error(`Error al eliminar la sala: ${error.message}`);
+               } finally {
+                    setLoading(false);
+               }
+          },
+          [handleFetchRooms]
+     );
+
      useEffect(() => {
           handleFetchRooms();
      }, []);
 
      return (
-          <RoomsContext.Provider value={{ rooms, handleFetchRooms, handleUpdateRoom, handleCreateRooms, loading, error }}>
+          <RoomsContext.Provider
+               value={{ rooms, handleFetchRooms, handleUpdateRoom, handleCreateRooms, handleDeleteRooms, loading, error }}
+          >
                {children}
           </RoomsContext.Provider>
      );
