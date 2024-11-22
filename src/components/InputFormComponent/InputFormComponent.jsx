@@ -2,7 +2,17 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import inputStyles from "./InputFormComponent.module.css";
 
-export default function InputFormComponent({ name, placeholder, value, onChange, icon, type }) {
+export default function InputFormComponent({
+     name,
+     placeholder,
+     value,
+     onChange,
+     icon,
+     type,
+     width = "100%",
+     height = "48px",
+     isTextArea = false,
+}) {
      const [isTouchedInput, setIsTouchedInput] = useState(false);
 
      const handleBlur = () => {
@@ -11,9 +21,12 @@ export default function InputFormComponent({ name, placeholder, value, onChange,
 
      const isEmpty = isTouchedInput && !value;
 
+     const InputElement = isTextArea ? "textarea" : "input";
+
      return (
-          <div className={`${inputStyles.inputcontainer} ${isEmpty ? inputStyles.inputerror : ""}`}>
-               <input
+          <div style={{ width, height }} className={`${inputStyles.inputcontainer}  ${isEmpty ? inputStyles.inputerror : ""}`}>
+               <InputElement
+                    style={{ maxHeight: height, maxWidth: width }}
                     className={inputStyles.inputform}
                     placeholder={placeholder}
                     name={name}
@@ -39,4 +52,7 @@ InputFormComponent.propTypes = {
      onChange: PropTypes.func.isRequired,
      icon: PropTypes.any,
      type: PropTypes.string,
+     width: PropTypes.string,
+     height: PropTypes.string,
+     isTextArea: PropTypes.bool,
 };

@@ -1,7 +1,7 @@
 body {
      margin: 0;
      padding: 0;
-     font-family: "Poppins", sans-serif;
+     font-family: "Poppins";
 }
 
 h1,
@@ -25,14 +25,18 @@ h1 {
 .layout {
      display: flex;
      flex-direction: column;
-     background-color: #1f2430;
+     align-items: center;
+     background-color: #121820;
      min-height: 100vh;
-     padding: 0 40px;
+     padding: 0 25px;
 }
 
 .main {
      display: flex;
      flex-direction: column;
+     align-items: center;
+     width: 100%;
+     max-width: 780px;
 }
 
 /* disable show password icon in text inputs */

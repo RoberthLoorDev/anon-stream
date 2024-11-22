@@ -1,8 +1,7 @@
 .inputcontainer {
      position: relative;
      border-radius: 10px;
-     background-color: #1f2430;
-     height: 48px;
+     background: #1f2430;
 }
 
 .inputform {
@@ -13,10 +12,13 @@
      box-shadow: none;
      outline: none;
      border: none;
-     text-indent: 10px;
-     font-size: 16px;
-     color: #f4f8f9;
+     font-size: 14px;
      font-weight: 500;
+     color: #f4f8f9;
+     font-family: Poppins;
+     resize: none;
+     padding: 10px 10px;
+     box-sizing: border-box;
 }
 
 .iconinput {
